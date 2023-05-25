@@ -9,7 +9,7 @@ from django.db import models
 class Movie(models.Model):
     hall = models.CharField(max_length=10)
     movie = models.CharField(max_length=50)
-    date = models.DateField()
+    # date = models.DateField()
 
 
 class Guest(models.Model):
@@ -18,5 +18,7 @@ class Guest(models.Model):
 
 
 class Reservation(models.Model):
-    guest = models.ForeignKey(Guest, on_delete=models.CASCADE)
-    movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
+    guest = models.ForeignKey(
+        Guest, related_name="reservation",  on_delete=models.CASCADE)
+    movie = models.ForeignKey(
+        Movie, related_name="reservation",  on_delete=models.CASCADE)
